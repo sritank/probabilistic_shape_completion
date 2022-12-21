@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from __future__ import print_function
 
 import argparse
@@ -44,16 +44,16 @@ def run_inference(elem):
     # if not ARGS.publish_each_sample and not ARGS.use_best_iou:
     #     return model_runner.model(elem)
 
-    # best_iou = 0.0
-    # best_inference = None
-    # for _ in range(300):
-    #     inference = model_runner.model(elem)
-    #     iou = metrics.iou(elem['gt_occ'], inference['predicted_occ'])
-    #     if ARGS.publish_each_sample:
-    #         VG_PUB.publish_inference(inference)
-    #     if iou > best_iou:
-    #         best_iou = iou
-    #         best_inference = inference
+    best_iou = 0.0
+    best_inference = None
+    for _ in range(300):
+        inference = model_runner.model(elem)
+        iou = metrics.iou(elem['gt_occ'], inference['predicted_occ'])
+        if ARGS.publish_each_sample:
+            VG_PUB.publish_inference(inference)
+        if iou > best_iou:
+            best_iou = iou
+            best_inference = inference
     # if ARGS.publish_each_sample:
     #     raw_input("Ready to publish final sample?")
     # sample_evaluation = model_evaluator.evaluate_element(elem, num_samples=10)
